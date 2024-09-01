@@ -29,6 +29,8 @@ streamlit run src/app.py
 
 # Caution!
 
+## 0.3.3 だと auto_hash は機能しない
+
 [Invalid salt from 0.3.3 · Issue #186 · mkhorasani/Streamlit-Authenticator (github.com)](https://github.com/mkhorasani/Streamlit-Authenticator/issues/186)
 
 に記載の通り、0.3.3 だと auto_hash が機能しないので
@@ -40,3 +42,11 @@ stauth.Hasher.hash_passwords(config["credentials"]),
 ```
 
 のように事前に hash 化する必要あり。
+
+## 前回の Cookie が残ったままだとうまく動かないことも
+
+```
+streamlit_authenticator.utilities.exceptions.LoginError: User not authorized
+```
+
+で躓いたら、Cookie を削除してみると解消される可能性あり。
